@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     private float m_fStunDuration = 1.5f;
     private bool m_bStunned = false;
     private CircleCollider2D Collider;
+    private float m_fCooldown = 2.0f;
 
     // Use this for initialization
     void Awake () {
@@ -20,13 +21,17 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         Collider.enabled = false;
+        m_fCooldown -= Time.deltaTime;
 
         if(!m_bStunned)
         {
             this.transform.position += new Vector3(Time.deltaTime * Input.GetAxis("HorizontalP" + m_iPlayerId), Time.deltaTime * -1 * Input.GetAxis("VerticalP" + m_iPlayerId));
 
-            if (Input.GetButtonDown("A_P" + m_iPlayerId))
+            if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
+            {
                 Collider.enabled = true;
+                m_fCooldown = 2.0f;
+            }   
         }
 	}
 
