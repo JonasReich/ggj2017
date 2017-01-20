@@ -43,14 +43,14 @@ public class StationCapture : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		PlayerController a;
+		Debug.Log("lel");
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent<PlayerController>();
 		if (pc == null)
 			return;
-		inBounds[pc.PlayerId] = true;
+		inBounds[pc.GetId()] = true;
 		playersInBounds++;
-		Debug.Log("Entered by player " + pc.PlayerId);
+		Debug.Log("Entered by player " + pc.GetId());
 	}
 
 	void OnTriggerExit2D(Collider2D collider) {
@@ -58,9 +58,9 @@ public class StationCapture : MonoBehaviour {
 			collider.gameObject.GetComponent(typeof(PlayerController));
 		if (pc == null)
 			return;
-		inBounds[pc.PlayerId] = false;
-		timeInBounds[pc.PlayerId] = 0f;
+		inBounds[pc.GetId()] = false;
+		timeInBounds[pc.GetId()] = 0f;
 		playersInBounds--;
-		Debug.Log("Exited by player " + pc.PlayerId);
+		Debug.Log("Exited by player " + pc.GetId());
 	}
 }
