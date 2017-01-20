@@ -11,14 +11,20 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        PlayerArray = new PlayerController[Input.GetJoystickNames().Length];
+        string[] sJoysticks = Input.GetJoystickNames();
+        PlayerArray = new PlayerController[sJoysticks.Length];
+        
 
-        for (int i = 0; i < Input.GetJoystickNames().Length; i++)
+        for (int i = 0; i < sJoysticks.Length; i++)
         {
-            PlayerController PlayerTMP = Instantiate(PlayerPrefab, GameObject.Find("Players").transform);
-            PlayerTMP.name = "Player" + i;
-            PlayerTMP.SetId(i);
-            PlayerArray[i] = PlayerTMP;
+            if(sJoysticks[i] != "")
+            {
+                PlayerController PlayerTMP = Instantiate(PlayerPrefab, GameObject.Find("Players").transform);
+                PlayerTMP.name = "Player" + i;
+                PlayerTMP.SetId(i);
+                PlayerArray[i] = PlayerTMP;
+            }
+
         }
 
     }
