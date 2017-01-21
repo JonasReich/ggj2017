@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private PlayerController[] PlayerArray;
     [SerializeField]
-    private Sprite[] PlayerSprites;
-    [SerializeField]
     private PlayerController PlayerPrefab;
 
 	private float countDown;
@@ -38,14 +36,12 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("Created Player " + i);
                 PlayerController PlayerTMP =
                         Instantiate(PlayerPrefab, GameObject.Find("Players").transform);
-                PlayerTMP.Initialize(i);
                 PlayerTMP.name = "Player" + i;
                 PlayerTMP.SetGameManager(this);
 				PlayerTMP.SetLevel(Level);
-                PlayerTMP.SetSprite(PlayerSprites[i]);
                 //PlayerTMP.SetPosition(new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f)));
                 PlayerArray[i] = PlayerTMP;
-
+                PlayerTMP.Initialize(i);
         }
 		
 		countDown = RoundTime;
