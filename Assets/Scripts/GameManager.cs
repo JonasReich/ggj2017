@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
 	public float RoundTime = 30f;
 	public TextureReader Level;
 
+	public GUIStyle style, winlabelstyle, winbuttonstyle;
+
     [SerializeField]
     private PlayerController[] PlayerArray;
     [SerializeField]
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour {
 		countDown = RoundTime;
     }
 
-	private int getWinningPlayerId() {
+	private string getWinningPlayerColor() {
 		//todo unentschieden
 
 		int[] stations = new int[NumPlayers];
@@ -66,14 +68,22 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-		return winner;
+		switch (winner) {
+			case 0: return "Red";
+			case 1: return "Green";
+			case 2: return "Blue";
+			case 3: return "Yellow";
+			default: return "No";
+		}
 	}
 
 	void OnGUI() {
 		if (gameFinished) {
-			string win = "Player " + getWinningPlayerId() + " won!";
-			GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 400, 200), win);
-			if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 20, 400, 200), "Restart")) {
+			string win = getWinningPlayerColor() + " Player Won!";
+			GUI.Label(new Rect(Screen.width / 2 - 125, Screen.height / 2 - 75, 250, 50),
+					win, winlabelstyle);
+			if (GUI.Button(new Rect(Screen.width / 2 - 125, Screen.height / 2 - 25, 250, 100),
+					"> Restart <", winbuttonstyle)) {
 				gameFinished = false;
 				countDown = RoundTime;
 				resetStations();
@@ -88,7 +98,7 @@ public class GameManager : MonoBehaviour {
 			label = minutes + ":0" + seconds;
 		else
 			label = minutes + ":" + seconds;
-		GUI.Label(new Rect(0, 0, 400, 200), label);
+		GUI.Label(new Rect(Screen.width - 80, 10, 50, 30), label, style);
 	}
 
 	void Update () {
