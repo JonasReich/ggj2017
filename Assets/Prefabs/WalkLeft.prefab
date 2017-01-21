@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212288831040706608}
   - component: {fileID: 114052634817662468}
   m_Layer: 0
-  m_Name: WalkLeft (1)
+  m_Name: WalkLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

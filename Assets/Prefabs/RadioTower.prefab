@@ -206,7 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CaptureTime: 3
-  GameManager: {fileID: 0}
+  GameManager: {fileID: 1034699494321568, guid: aa9ad3d32c890974982eae14430efa15,
+    type: 2}
 --- !u!198 &198136207112822534
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -139,6 +139,7 @@ MonoBehaviour:
   GameManager: {fileID: 0}
   m_Particle: {fileID: 1468650947997354}
   knockBackTime: 2
+  Level: {fileID: 1184503584473444, guid: 7a7a062d83e89f04facfd8abe3b77c81, type: 2}
 --- !u!198 &198532676057401016
 ParticleSystem:
   m_ObjectHideFlags: 1

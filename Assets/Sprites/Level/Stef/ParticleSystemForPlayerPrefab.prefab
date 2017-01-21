@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198929199731381378}
   - component: {fileID: 199033140278982372}
   m_Layer: 0
-  m_Name: Rauch
+  m_Name: ParticleSystemForPlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1526333118019950}
   serializedVersion: 5
   lengthInSec: 0.5
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
