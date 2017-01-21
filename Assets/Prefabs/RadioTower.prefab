@@ -216,7 +216,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1688672135905040}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 0.3
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -2805,7 +2805,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1696694823661356}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -5565,7 +5565,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a9771892e034c9846aaaa2867a7adc38, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4fc96d48e396b724a848c5962263b2d1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
