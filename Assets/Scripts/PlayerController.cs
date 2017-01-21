@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 		{
             m_Rigidbody.velocity = new Vector3(
 					Time.deltaTime * horizontal,
-					Time.deltaTime * -1 * vertical) * 50f;
+					Time.deltaTime * -1 * vertical) * 100f;
 			Vector2 pos = m_Rigidbody.position;
 			//Debug.Log(pos.x);
 

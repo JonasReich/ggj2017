@@ -17,21 +17,29 @@ public class GameManager : MonoBehaviour {
 
 
 	void Awake () {
-		if (OnlyUseJoysticks)
-        	NumPlayers = Input.GetJoystickNames().Length;
+        if (OnlyUseJoysticks) {
+            NumPlayers = 0;
+            foreach (string s in Input.GetJoystickNames())
+            {
+                Debug.Log(s);
+                if (s != "")
+                    NumPlayers++;
+            }
+        }
 
         PlayerArray = new PlayerController[NumPlayers];
 
         for (int i = 0; i < NumPlayers; i++) {
-			Debug.Log("Created Player " + i);
-			PlayerController PlayerTMP =
-					Instantiate(PlayerPrefab, GameObject.Find("Players").transform);
-			PlayerTMP.Initialize(i);
-			PlayerTMP.name = "Player" + i;
-			PlayerTMP.SetGameManager(this);
-			PlayerTMP.SetSprite(PlayerSprites[i]);
-			//PlayerTMP.SetPosition(new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f)));
-			PlayerArray[i] = PlayerTMP;
+                Debug.Log("Created Player " + i);
+                PlayerController PlayerTMP =
+                        Instantiate(PlayerPrefab, GameObject.Find("Players").transform);
+                PlayerTMP.Initialize(i);
+                PlayerTMP.name = "Player" + i;
+                PlayerTMP.SetGameManager(this);
+                PlayerTMP.SetSprite(PlayerSprites[i]);
+                //PlayerTMP.SetPosition(new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f)));
+                PlayerArray[i] = PlayerTMP;
+
         }
     }
 
