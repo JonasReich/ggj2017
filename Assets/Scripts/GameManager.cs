@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
                 PlayerTMP.SetGameManager(this);
                 PlayerTMP.SetSprite(PlayerSprites[i]);
                 PlayerTMP.SetId(i);
+                PlayerTMP.SetPosition(new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f)));
                 PlayerArray[i] = PlayerTMP;
             }
 

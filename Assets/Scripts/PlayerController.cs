@@ -14,17 +14,21 @@ public class PlayerController : MonoBehaviour {
     private CircleCollider2D Collider;
     private float m_fCooldown = 2.0f;
     private SpriteRenderer m_Sprite;
+    private ParticleSystem m_Particle;
 
     // Use this for initialization
     void Awake () {
         Collider = this.GetComponent<CircleCollider2D>();
         m_Sprite = this.GetComponent<SpriteRenderer>();
         Collider.enabled = false;
+        m_Particle = this.GetComponent<ParticleSystem>();
+        m_Particle.Pause();
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         Collider.enabled = false;
+        
         m_fCooldown -= Time.deltaTime;
 
         if(!m_bStunned)
@@ -33,11 +37,22 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
             {
+                m_Particle.Clear();
+                m_Particle.Play();
+                if (!IsInvoking())
+                    Invoke("ResetParticle", 1.0f);
                 Collider.enabled = true;
                 m_fCooldown = 2.0f;
             }   
         }
 	}
+
+    void ResetParticle()
+    {
+        m_Particle.Pause();
+        m_Particle.Clear();
+    }
+
 
     public void Stun(int AttackerID)
     {
@@ -83,5 +98,10 @@ public class PlayerController : MonoBehaviour {
     public void SetSprite(Sprite _Sprite)
     {
         m_Sprite.sprite = _Sprite;
+    }
+
+    public void SetPosition(Vector2 Pos)
+    {
+        this.transform.position = Pos;
     }
 }
