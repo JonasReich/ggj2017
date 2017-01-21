@@ -175,13 +175,13 @@ public class PlayerController : MonoBehaviour {
         return m_iPlayerId;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        PlayerController otherPC = other.GetComponent<PlayerController>();
-
-        if(otherPC != null && otherPC.GetId() != m_iPlayerId && Collider.isActiveAndEnabled)
-            otherPC.Stun(m_iPlayerId);
-    }
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    PlayerController otherPC = other.GetComponent<PlayerController>();
+    //
+    //    if(otherPC != null && otherPC.GetId() != m_iPlayerId && Collider.isActiveAndEnabled)
+    //        otherPC.Stun(m_iPlayerId);
+    //}
 
     public void SetGameManager(GameManager Manager)
     {
