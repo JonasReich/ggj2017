@@ -8,15 +8,33 @@ public class StationCapture : MonoBehaviour {
 	private float[] timeInBounds;
 	private int playersInBounds;
 
+	private bool captured = false;
+	// Player ID
+	private int owner;
+	private bool playerCapturing = false;
+
+	public GameObject GameManager;
+	private ParticleSystem particles;
+	private GameManager game;
+	private OnParticleCollisions part;
+
 	// Use this for initialization
 	void Start () {
 		timeInBounds = new float[4];
 		inBounds = new bool[4];
+		particles = (ParticleSystem) GetComponent<ParticleSystem>();
+		part = (OnParticleCollisions) GetComponent<OnParticleCollisions>();
+		//game = (GameManager) GetComponent<GameManager>();
+		game = (GameManager) GameManager.GetComponent<GameManager>();
 	}
 
 	// Update is called once per frame
 	void Update () {
+		/*
 		if (playersInBounds != 1)
+			return;
+		*/
+		if (!playerCapturing)
 			return;
 
 		for (int i = 0; i < 4; i++) {
@@ -33,6 +51,11 @@ public class StationCapture : MonoBehaviour {
 
 	private void captureStation(int playerId) {
 		inBounds[playerId] = false;
+		captured = true;
+		owner = playerId;
+		part.SetColor(game.GetPlayerColor(playerId));
+		playerCapturing = false;
+
 		Debug.Log("Captured by player " + playerId);
 	}
 
@@ -43,13 +66,13 @@ public class StationCapture : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		Debug.Log("lel");
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent<PlayerController>();
 		if (pc == null)
 			return;
 		inBounds[pc.GetId()] = true;
 		playersInBounds++;
+		playerCapturing = (playersInBounds == 1);
 		Debug.Log("Entered by player " + pc.GetId());
 	}
 
@@ -61,6 +84,20 @@ public class StationCapture : MonoBehaviour {
 		inBounds[pc.GetId()] = false;
 		timeInBounds[pc.GetId()] = 0f;
 		playersInBounds--;
+		playerCapturing = (playersInBounds == 1);
 		Debug.Log("Exited by player " + pc.GetId());
 	}
+
+	public bool PlayerCapturing() {
+		return playerCapturing;
+	}
+
+	public bool IsCaptured() {
+		return captured;
+	}
+
+	public int GetOwner() {
+		return owner;
+	}
+
 }

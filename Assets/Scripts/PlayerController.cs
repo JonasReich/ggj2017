@@ -69,6 +69,9 @@ public class PlayerController : MonoBehaviour {
 
     public void Stun()
     {
+		if (m_bStunned)
+			return;
+		Debug.Log("Player " + this.GetId() + " has been stunned");
         m_bStunned = true;
         if(!IsInvoking())
             Invoke("Reset", m_fStunDuration);
@@ -77,7 +80,7 @@ public class PlayerController : MonoBehaviour {
     public void Reset()
     {
         m_bStunned = false;
-        Collider.enabled = false;
+        //Collider.enabled = false;
     }
 
     public void SetId(int id)
