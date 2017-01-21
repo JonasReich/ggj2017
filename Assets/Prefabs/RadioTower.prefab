@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212905832599756010}
   - component: {fileID: 114004493447224622}
   - component: {fileID: 50857029960235938}
-  - component: {fileID: 61837245563337732}
   - component: {fileID: 61764357217727422}
   - component: {fileID: 114938761859796066}
   - component: {fileID: 114947752122141766}
@@ -139,24 +138,10 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 1
-  m_Offset: {x: 0, y: 0.25}
-  serializedVersion: 2
-  m_Size: {x: 2, y: 1}
---- !u!61 &61837245563337732
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1340124472054364}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0.25}
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 2, y: 1}
 --- !u!114 &114004493447224622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,7 +201,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1688672135905040}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -2805,7 +2790,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1696694823661356}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -5520,7 +5505,7 @@ ParticleSystemRenderer:
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0.35
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2

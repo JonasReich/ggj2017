@@ -10,14 +10,17 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private GameManager GameManager;
     private bool m_bStunned = false;
-    private CircleCollider2D Collider;
+    public CircleCollider2D Collider;
     private float m_fCooldown = 2.0f;
     private SpriteRenderer m_Sprite;
     [SerializeField]
     private GameObject m_Particle;
     private Rigidbody2D m_Rigidbody;
 
-	public float knockBackTime = 2f;
+    public float MovementSpeedFaktor = 4f;
+
+
+    public float knockBackTime = 2f;
 
 	public GameObject Level;
 
@@ -29,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 
     void Awake ()
 	{
-        Collider = this.GetComponent<CircleCollider2D>();
+        
         m_Sprite = this.GetComponent<SpriteRenderer>();
         m_Rigidbody = this.GetComponent<Rigidbody2D>();
         Collider.enabled = false;
@@ -87,7 +90,7 @@ public class PlayerController : MonoBehaviour {
 		{
             m_Rigidbody.velocity = new Vector3(
 					Time.deltaTime * horizontal,
-					Time.deltaTime * -1 * vertical).normalized * 3f;
+					Time.deltaTime * -1 * vertical).normalized * MovementSpeedFaktor;
 			wrapAround();
 		} else {
             m_Rigidbody.velocity = Vector3.zero;
@@ -95,7 +98,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
 		{
-			m_Particle.SetActive(true);
+            MovementSpeedFaktor = 10f;
+            m_Particle.SetActive(true);
                 Debug.Log(m_Particle.activeInHierarchy);
                 if (!IsInvoking())
                     Invoke("ResetParticle", knockBackTime);
@@ -133,6 +137,7 @@ public class PlayerController : MonoBehaviour {
     void ResetParticle()
     {
         m_Particle.SetActive(false);
+        MovementSpeedFaktor = 4f;
     }
 
 
