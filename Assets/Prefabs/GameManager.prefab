@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerArray: []
   PlayerSprites:
-  - {fileID: 21300000, guid: 741beac8e99ac7a4f914d0e71cb53996, type: 3}
+  - {fileID: 21300000, guid: 79e812ffeeb22494089a8510789ff43b, type: 3}
   - {fileID: 21300000, guid: 0962f0e8d282df64fa7fe9b605886baa, type: 3}
   - {fileID: 21300000, guid: e929bf543f3117340b98f343d47fefe2, type: 3}
   - {fileID: 21300000, guid: 60801395b14608742a1b46ea03c4047a, type: 3}

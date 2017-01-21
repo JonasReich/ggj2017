@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour {
 	{
         Collider = this.GetComponent<CircleCollider2D>();
         m_Sprite = this.GetComponent<SpriteRenderer>();
-        //Collider.enabled = false;
-        //m_Particle.SetActive(false);
+        Collider.enabled = false;
+        m_Particle.SetActive(false);
 
 		// Player layer:
 		gameObject.layer = 8;

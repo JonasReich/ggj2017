@@ -64,7 +64,7 @@ public class StationCapture : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.GetType() != typeof(CircleCollider2D))
+		if (collider.GetType() != typeof(BoxCollider2D))
 			return;
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent<PlayerController>();
@@ -78,7 +78,7 @@ public class StationCapture : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D collider) {
-		if (collider.GetType() != typeof(CircleCollider2D))
+		if (collider.GetType() != typeof(BoxCollider2D))
 			return;
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent(typeof(PlayerController));
