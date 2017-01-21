@@ -104,8 +104,12 @@ public class StationCapture : MonoBehaviour {
 					playerCapturing = true;
 			}
 		}
-		if (!captured && playerCapturing == false)
-			particles.SetIndicationColor(Color.grey);
+		if (playerCapturing == false) {
+			if (!captured)
+				particles.SetIndicationColor(Color.grey);
+			else
+				particles.SetIndicationColor(game.PlayerColor[owner]);
+		}
 
 		Debug.Log("Exited by player " + pc.GetId());
 	}
