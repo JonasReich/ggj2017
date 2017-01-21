@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private PlayerController[] PlayerArray;
     [SerializeField]
+    private Sprite[] PlayerSprites;
+    [SerializeField]
     private PlayerController PlayerPrefab;
 
 	// Use this for initialization
@@ -21,6 +23,8 @@ public class GameManager : MonoBehaviour {
             {
                 PlayerController PlayerTMP = Instantiate(PlayerPrefab, GameObject.Find("Players").transform);
                 PlayerTMP.name = "Player" + i;
+                PlayerTMP.SetGameManager(this);
+                PlayerTMP.SetSprite(PlayerSprites[i]);
                 PlayerTMP.SetId(i);
                 PlayerArray[i] = PlayerTMP;
             }
@@ -33,4 +37,9 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public Vector2 GetPlayerPos(int PlayerID)
+    {
+        return PlayerArray[PlayerID].transform.position;
+    }
 }

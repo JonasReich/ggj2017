@@ -8,13 +8,17 @@ public class PlayerController : MonoBehaviour {
     private int m_iPlayerId;
     [SerializeField]
     private float m_fStunDuration = 1.5f;
+    [SerializeField]
+    private GameManager GameManager;
     private bool m_bStunned = false;
     private CircleCollider2D Collider;
     private float m_fCooldown = 2.0f;
+    private SpriteRenderer m_Sprite;
 
     // Use this for initialization
     void Awake () {
         Collider = this.GetComponent<CircleCollider2D>();
+        m_Sprite = this.GetComponent<SpriteRenderer>();
         Collider.enabled = false;
     }
 	
@@ -35,10 +39,13 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    public void Stun()
+    public void Stun(int AttackerID)
     {
         m_bStunned = true;
-        if(!IsInvoking())
+        Vector2 AttackerPos = GameManager.GetPlayerPos(AttackerID);
+        Vector2 thisPos = GameManager.GetPlayerPos(m_iPlayerId);
+        this.transform.position -= new Vector3(AttackerPos.x - thisPos.x, AttackerPos.y - thisPos.y).normalized;
+        if (!IsInvoking())
             Invoke("Reset", m_fStunDuration);
     }
 
@@ -64,7 +71,17 @@ public class PlayerController : MonoBehaviour {
 
         if(otherPC != null && otherPC.GetId() != m_iPlayerId && Collider.isActiveAndEnabled)
         {
-            otherPC.Stun();
+            otherPC.Stun(m_iPlayerId);
         }
+    }
+
+    public void SetGameManager(GameManager Manager)
+    {
+        GameManager = Manager;
+    }
+
+    public void SetSprite(Sprite _Sprite)
+    {
+        m_Sprite.sprite = _Sprite;
     }
 }
