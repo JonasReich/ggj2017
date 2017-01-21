@@ -151,6 +151,10 @@ public class PlayerController : MonoBehaviour {
             Invoke("Reset", m_fStunDuration);
     }
 
+	public void MoveToSpawn() {
+		// where?
+	}
+
     public void Reset()
     {
         m_bStunned = false;

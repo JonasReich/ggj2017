@@ -118,4 +118,15 @@ public class StationCapture : MonoBehaviour {
 		return owner;
 	}
 
+	public void Reset() {
+		owner = -1;
+		captured = false;
+		for (int i = 0; i < inBounds.Length; i++)
+			inBounds[i] = false;
+		particles.SetStunColor(Color.clear);
+		particles.SetIndicationColor(Color.white);
+
+		playerCapturing = false;
+	}
+
 }

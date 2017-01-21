@@ -49,13 +49,35 @@ public class GameManager : MonoBehaviour {
 		countDown = RoundTime;
     }
 
+	private int getWinningPlayerId() {
+		//todo unentschieden
+
+		int[] stations = new int[NumPlayers];
+		foreach (StationCapture station in Level.GetComponentsInChildren(typeof(StationCapture))) {
+			if (station.GetOwner() != -1)
+				stations[station.GetOwner()]++;
+		}
+
+		int winner = 0, maxPoints = 0;
+		for (int i = 0; i < NumPlayers; i++) {
+			if (stations[i] > maxPoints) {
+				maxPoints = stations[i];
+				winner = i;
+			}
+		}
+
+		return winner;
+	}
+
 	void OnGUI() {
 		if (gameFinished) {
-			GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 400, 200), "End");
+			string win = "Player " + getWinningPlayerId() + " won!";
+			GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 400, 200), win);
 			if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 20, 400, 200), "Restart")) {
 				gameFinished = false;
 				countDown = RoundTime;
-				unstunPlayers();
+				resetStations();
+				resetPlayers();
 			}
 		}
 
@@ -82,18 +104,25 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	private void resetPlayers() {
+		foreach (PlayerController pc in PlayerArray) {
+			pc.Reset();
+			pc.MoveToSpawn();
+		}
+	}
+
+	private void resetStations() {
+		foreach (StationCapture station in Level.GetComponentsInChildren(typeof(StationCapture))) {
+			station.Reset();
+		}
+	}
+
 	void stunPlayers() {
 		foreach (PlayerController pc in PlayerArray) {
 			pc.Stun(pc.GetId());
 		}
 	}
 	
-	void unstunPlayers() {
-		foreach (PlayerController pc in PlayerArray) {
-			pc.Reset();
-		}
-	}
-
 	public Color GetPlayerColor(int id) {
 		return PlayerColor[id];
 	}
