@@ -87,21 +87,8 @@ public class PlayerController : MonoBehaviour {
 		{
             m_Rigidbody.velocity = new Vector3(
 					Time.deltaTime * horizontal,
-					Time.deltaTime * -1 * vertical) * 50f;
-			Vector2 pos = m_Rigidbody.position;
-			//Debug.Log(pos.x);
-
-			if (pos.x >= levelPos.x + levelSize.x)
-				pos.x = levelPos.x;
-			else if (pos.x < levelPos.x)
-				pos.x = levelPos.x + levelSize.x;
-
-			if (pos.y >= levelPos.y + levelSize.y)
-				pos.y = levelPos.y;
-			else if (pos.y < levelPos.y)
-				pos.y = levelPos.y + levelSize.y;
-
-			m_Rigidbody.position = pos;
+					Time.deltaTime * -1 * vertical).normalized * 3f;
+			wrapAround();
 		} else {
             m_Rigidbody.velocity = Vector3.zero;
 		}
@@ -129,6 +116,20 @@ public class PlayerController : MonoBehaviour {
 		}   
 	}
 
+	void wrapAround() {
+		Vector2 pos = m_Rigidbody.position;
+		if (pos.x >= levelPos.x + levelSize.x)
+			pos.x = levelPos.x;
+		else if (pos.x < levelPos.x)
+			pos.x = levelPos.x + levelSize.x;
+
+		if (pos.y >= levelPos.y + levelSize.y)
+			pos.y = levelPos.y;
+		else if (pos.y < levelPos.y)
+			pos.y = levelPos.y + levelSize.y;
+		m_Rigidbody.position = pos;
+	}
+
     void ResetParticle()
     {
         m_Particle.SetActive(false);
@@ -145,6 +146,7 @@ public class PlayerController : MonoBehaviour {
         Vector2 thisPos = GameManager.GetPlayerPos(m_iPlayerId);
         this.transform.position -= new Vector3(
 				AttackerPos.x - thisPos.x, AttackerPos.y - thisPos.y).normalized;
+		wrapAround();
         if (!IsInvoking())
             Invoke("Reset", m_fStunDuration);
     }
