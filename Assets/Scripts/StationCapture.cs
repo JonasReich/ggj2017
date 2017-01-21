@@ -8,6 +8,8 @@ public class StationCapture : MonoBehaviour {
 	private float[] timeInBounds;
 	private int playersInBounds;
 
+    public int Level;
+
 	private bool captured = false;
 	// Player ID
 	private int owner = -1;
@@ -32,6 +34,10 @@ public class StationCapture : MonoBehaviour {
 		if (!playerCapturing) {
 			return;
 		}
+        
+
+        if (Level == 5)
+            Debug.LogError("Winning!!!!!!!!!!!!");
 
 		for (int i = 0; i < 4; i++) {
 			if (inBounds[i]) {

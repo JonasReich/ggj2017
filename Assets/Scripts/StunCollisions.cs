@@ -6,9 +6,10 @@ public class StunCollisions : MonoBehaviour {
 
 	public GameObject RadioStation;
 	private StationCapture station;
+    bool hit = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		station = RadioStation.GetComponent<StationCapture>();
 	}
 	
@@ -28,8 +29,20 @@ public class StunCollisions : MonoBehaviour {
 
 		Debug.Log("inhere");
 
-		if (station.GetOwner() != pc.GetId())
-			pc.Stun(station.GetOwner());
+		if (station.GetOwner() != pc.GetId() && !hit)
+        {
+            station.GetComponent<StationCapture>().Level++;
+            station.GetComponent<ParticleCollisions>().StunWaveDelay -= station.GetComponent<StationCapture>().Level++;
+            hit = true;
+            if (!IsInvoking())
+                Invoke("ResetHit", 1.0f);
+        }
+			
+    }
+
+    void ResetHit()
+    {
+        hit = false;
     }
 
 }
