@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        //Collider.enabled = false;
+        Collider.enabled = false;
         
         m_fCooldown -= Time.deltaTime;
 
