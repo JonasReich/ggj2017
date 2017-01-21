@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1e00c62ab0cff46b8d8e24b16db34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleSpriteRenderer: {fileID: 212912787595521438}
   m_iPlayerId: 0
   m_fStunDuration: 5
   GameManager: {fileID: 0}

@@ -3,7 +3,9 @@ using NONE;
 
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField]
+	public SpriteRenderer circleSpriteRenderer;
+
+	[SerializeField]
     private int m_iPlayerId;
     [SerializeField]
     private float m_fStunDuration = 1.5f;
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour {
 			keyRight = KeyCode.D;
 			keyAttack = KeyCode.RightControl;
 		}
+
+		circleSpriteRenderer.color = GameManager.PlayerColor[m_iPlayerId];
 	}
 	
 	// Update is called once per frame
@@ -194,13 +198,8 @@ public class PlayerController : MonoBehaviour {
 		Debug.Log("Level size: " + levelSize);
 	}
 
-    public void SetSprite(Sprite _Sprite)
-    {
-        m_Sprite.sprite = _Sprite;
-    }
-
     public void SetPosition(Vector2 Pos)
     {
-        this.transform.position = Pos;
+        transform.position = Pos;
     }
 }
