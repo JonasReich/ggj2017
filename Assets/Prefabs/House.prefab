@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4651990797565536}
   - component: {fileID: 212883589629965774}
   m_Layer: 0
-  m_Name: StreetRight
+  m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
