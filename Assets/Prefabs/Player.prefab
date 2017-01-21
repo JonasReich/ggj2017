@@ -138,6 +138,7 @@ MonoBehaviour:
   m_fStunDuration: 5
   GameManager: {fileID: 0}
   m_Particle: {fileID: 1468650947997354}
+  knockBackTime: 2
 --- !u!198 &198532676057401016
 ParticleSystem:
   m_ObjectHideFlags: 1

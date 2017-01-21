@@ -4,6 +4,7 @@ public class ParticleCollisions : MonoBehaviour {
     //public UnityEvent TestEvent;
 
 	public float StunWaveDelay = 3f;
+	public GameObject StunParticles, OwnerParticles;
 
 	private ParticleSystem stunParticles, ownerParticles;
 	private StationCapture station;
@@ -12,9 +13,9 @@ public class ParticleCollisions : MonoBehaviour {
 	void Awake() {
 		station = GetComponent<StationCapture>();
 		stunParticles =
-			transform.Find("StunWave").GetComponent<ParticleSystem>();
+			StunParticles.GetComponent<ParticleSystem>();
 		ownerParticles =
-			transform.Find("OwnerIndication").GetComponent<ParticleSystem>();
+			OwnerParticles.GetComponent<ParticleSystem>();
 	}
 
 	void Update() {
@@ -33,10 +34,15 @@ public class ParticleCollisions : MonoBehaviour {
 
     void OnParticleCollision(GameObject other)
     {
+		if (other == this.gameObject)
+			return;
+
 		PlayerController pc = (PlayerController)
 				other.GetComponent<PlayerController>();
 		if (pc == null)
 			return;
+
+		Debug.Log("inhere");
 
 		if (station.GetOwner() != pc.GetId())
 			pc.Stun(station.GetOwner());

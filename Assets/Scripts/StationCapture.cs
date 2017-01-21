@@ -18,6 +18,7 @@ public class StationCapture : MonoBehaviour {
 	private GameManager game;
 	private ParticleCollisions particles;
 
+
 	// Use this for initialization
 	void Start () {
 		timeInBounds = new float[4];

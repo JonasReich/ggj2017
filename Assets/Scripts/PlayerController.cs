@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour {
     private GameObject m_Particle;
     private Rigidbody2D m_Rigidbody;
 
+	public float knockBackTime = 2f;
+
     private string m_sHorizontalAxisName;
     private string m_sVerticalAxisName;
 	private KeyCode keyUp, keyDown, keyLeft, keyRight, keyAttack;
@@ -77,7 +79,23 @@ public class PlayerController : MonoBehaviour {
 		{
             m_Rigidbody.velocity = new Vector3(
 					Time.deltaTime * horizontal,
-					Time.deltaTime * -1 * vertical) * 25;
+					Time.deltaTime * -1 * vertical) * 50f;
+			Vector2 pos = m_Rigidbody.position;
+			Debug.Log(pos.x);
+
+			if (pos.x >= 19f)
+				pos.x = 0f;
+			else if (pos.x < 0f)
+				pos.x = 19f;
+
+			if (pos.y >= 19f)
+				pos.y = 0f;
+			else if (pos.y < 0f)
+				pos.y = 19f;
+
+			m_Rigidbody.position = pos;
+		} else {
+            m_Rigidbody.velocity = Vector3.zero;
 		}
 
 		if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
@@ -85,10 +103,9 @@ public class PlayerController : MonoBehaviour {
 			m_Particle.SetActive(true);
                 Debug.Log(m_Particle.activeInHierarchy);
                 if (!IsInvoking())
-                    Invoke("ResetParticle", 0.5f);
+                    Invoke("ResetParticle", knockBackTime);
                 Collider.enabled = true;
 		}
-
 
 		bool attack = Input.GetButtonDown("A_P" + m_iPlayerId)
 				|| Input.GetKeyDown(keyAttack);
@@ -98,7 +115,7 @@ public class PlayerController : MonoBehaviour {
 			m_Particle.SetActive(true);
 			Debug.Log(m_Particle.activeInHierarchy);
 			if (!IsInvoking())
-				Invoke("ResetParticle", 0.5f);
+				Invoke("ResetParticle", knockBackTime);
 			Collider.enabled = true;
 			m_fCooldown = 2.0f;
 		}   
