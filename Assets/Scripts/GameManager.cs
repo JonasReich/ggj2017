@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using NONE;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	public int NumPlayers = 2;
 	public Color[] PlayerColor;
 	public float RoundTime = 30f;
+	public TextureReader Level;
 
     [SerializeField]
     private PlayerController[] PlayerArray;
@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
                 PlayerTMP.Initialize(i);
                 PlayerTMP.name = "Player" + i;
                 PlayerTMP.SetGameManager(this);
+				PlayerTMP.SetLevel(Level);
                 PlayerTMP.SetSprite(PlayerSprites[i]);
                 //PlayerTMP.SetPosition(new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f)));
                 PlayerArray[i] = PlayerTMP;

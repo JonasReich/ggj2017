@@ -37,11 +37,11 @@ public class PlayerController : MonoBehaviour {
 
 		var tr = Level.GetComponent<TextureReader>();
 		levelSize = tr.GetSize();
-		Debug.Log(levelSize);
 		levelPos = tr.GetPos();
     }
 
 	public void Initialize(int id) {
+		//Debug.Log(levelSize);
 		m_iPlayerId = id;
         m_sHorizontalAxisName = "HorizontalP" + m_iPlayerId;
         m_sVerticalAxisName = "VerticalP" + m_iPlayerId;
@@ -178,6 +178,12 @@ public class PlayerController : MonoBehaviour {
     {
         GameManager = Manager;
     }
+
+	public void SetLevel(TextureReader level) {
+		levelSize = level.GetSize();
+		levelPos = level.GetPos();
+		Debug.Log("Level size: " + levelSize);
+	}
 
     public void SetSprite(Sprite _Sprite)
     {

@@ -48,8 +48,13 @@ public class ParticleCollisions : MonoBehaviour {
 			pc.Stun(station.GetOwner());
     }
 
-	public void SetColor(Color color) {
+	public void SetStunColor(Color color) {
 		var main = stunParticles.main;
+		main.startColor = color;
+	}
+
+	public void SetIndicationColor(Color color) {
+		var main = ownerParticles.main;
 		main.startColor = color;
 	}
 

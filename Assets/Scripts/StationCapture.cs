@@ -49,7 +49,8 @@ public class StationCapture : MonoBehaviour {
 		inBounds[playerId] = false;
 		captured = true;
 		owner = playerId;
-		particles.SetColor(game.GetPlayerColor(playerId));
+		particles.SetStunColor(game.GetPlayerColor(playerId));
+		particles.SetIndicationColor(game.GetPlayerColor(playerId));
 		playerCapturing = false;
 
 		Debug.Log("Captured by player " + playerId);

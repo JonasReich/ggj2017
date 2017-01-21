@@ -22,6 +22,7 @@ namespace NONE
 
         void Awake()
         {
+			Debug.Log(inputTexture.width + "x" + inputTexture.height);
             LoadFromTexture();
         }
 
