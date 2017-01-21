@@ -63,15 +63,16 @@ public class StationCapture : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.GetType() != typeof(BoxCollider2D))
-			return;
+		//if (collider.GetType() != typeof(BoxCollider2D))
+		//	return;
 
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent<PlayerController>();
 		if (pc == null)
 			return;
+        particles.SetIndicationColor(Color.clear);
 
-		inBounds[pc.GetId()] = true;
+        inBounds[pc.GetId()] = true;
 		playersInBounds++;
 		if (playersInBounds == 1 && pc.GetId() != owner) {
 			playerCapturing = true;
@@ -83,8 +84,8 @@ public class StationCapture : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D collider) {
-		if (collider.GetType() != typeof(BoxCollider2D))
-			return;
+		//if (collider.GetType() != typeof(BoxCollider2D))
+		//	return;
 
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent(typeof(PlayerController));
