@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
-public class OnParticleCollisions : MonoBehaviour {
+public class ParticleCollisions : MonoBehaviour {
     //public UnityEvent TestEvent;
 
 	public float EmissionDelay = 3f;
@@ -15,6 +12,7 @@ public class OnParticleCollisions : MonoBehaviour {
 	void Awake() {
 		particles = GetComponent<ParticleSystem>();
 		station = GetComponent<StationCapture>();
+
 	}
 
 	void Update() {
@@ -25,7 +23,6 @@ public class OnParticleCollisions : MonoBehaviour {
 
 		delay += Time.deltaTime;
 		if (delay >= EmissionDelay) {
-			Debug.Log("parti");
 			particles.Clear();
 			particles.Play();
 			delay -= EmissionDelay;
@@ -41,14 +38,12 @@ public class OnParticleCollisions : MonoBehaviour {
 
 		if (station.GetOwner() != pc.GetId())
 			pc.Stun(station.GetOwner());
-		
-        //particles.animation.gameObject.SetActive(false);
-        //TestEvent.Invoke();
     }
 
 	public void SetColor(Color color) {
 		var main = particles.main;
 		main.startColor = color;
+		//particles.startColor = color;
 	}
 
 }

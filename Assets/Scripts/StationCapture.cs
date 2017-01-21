@@ -10,28 +10,25 @@ public class StationCapture : MonoBehaviour {
 
 	private bool captured = false;
 	// Player ID
-	private int owner;
+	private int owner = -1;
 	private bool playerCapturing = false;
 
 	public GameObject GameManager;
-	private ParticleSystem particles;
+
 	private GameManager game;
-	private OnParticleCollisions part;
+	private ParticleCollisions particles;
 
 	// Use this for initialization
 	void Start () {
 		timeInBounds = new float[4];
 		inBounds = new bool[4];
-		particles = (ParticleSystem) GetComponent<ParticleSystem>();
-		part = (OnParticleCollisions) GetComponent<OnParticleCollisions>();
-		//game = (GameManager) GetComponent<GameManager>();
+		particles = (ParticleCollisions) GetComponent<ParticleCollisions>();
 		game = (GameManager) GameManager.GetComponent<GameManager>();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (!playerCapturing) {
-			//Debug.Log("stop");
 			return;
 		}
 
@@ -51,7 +48,7 @@ public class StationCapture : MonoBehaviour {
 		inBounds[playerId] = false;
 		captured = true;
 		owner = playerId;
-		part.SetColor(game.GetPlayerColor(playerId));
+		particles.SetColor(game.GetPlayerColor(playerId));
 		playerCapturing = false;
 
 		Debug.Log("Captured by player " + playerId);
@@ -66,29 +63,44 @@ public class StationCapture : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.GetType() != typeof(BoxCollider2D))
 			return;
+
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent<PlayerController>();
 		if (pc == null)
 			return;
+
 		inBounds[pc.GetId()] = true;
 		playersInBounds++;
-		playerCapturing = (playersInBounds == 1);
-		Debug.Log("inbounds: " + playersInBounds);
+		if (playersInBounds == 1 && pc.GetId() != owner) {
+			playerCapturing = true;
+		} else if (playersInBounds != 0) {
+			playerCapturing = false;
+		}
+
 		Debug.Log("Entered by player " + pc.GetId());
 	}
 
 	void OnTriggerExit2D(Collider2D collider) {
 		if (collider.GetType() != typeof(BoxCollider2D))
 			return;
+
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent(typeof(PlayerController));
 		if (pc == null)
 			return;
+
 		inBounds[pc.GetId()] = false;
 		timeInBounds[pc.GetId()] = 0f;
 		playersInBounds--;
-		playerCapturing = (playersInBounds == 1);
-		Debug.Log("inbounds: " + playersInBounds);
+
+		playerCapturing = false;
+		if (playersInBounds == 1) {
+			for (int i = 0; i < game.NumPlayers; i++) {
+				if (inBounds[i] && owner != i)
+					playerCapturing = true;
+			}
+		}
+
 		Debug.Log("Exited by player " + pc.GetId());
 	}
 
