@@ -3,16 +3,18 @@
 public class ParticleCollisions : MonoBehaviour {
     //public UnityEvent TestEvent;
 
-	public float EmissionDelay = 3f;
+	public float StunWaveDelay = 3f;
 
-	private ParticleSystem particles;
+	private ParticleSystem stunParticles, ownerParticles;
 	private StationCapture station;
 	private float delay;
 
 	void Awake() {
-		particles = GetComponent<ParticleSystem>();
 		station = GetComponent<StationCapture>();
-
+		stunParticles =
+			transform.Find("StunWave").GetComponent<ParticleSystem>();
+		ownerParticles =
+			transform.Find("OwnerIndication").GetComponent<ParticleSystem>();
 	}
 
 	void Update() {
@@ -22,10 +24,10 @@ public class ParticleCollisions : MonoBehaviour {
 		}
 
 		delay += Time.deltaTime;
-		if (delay >= EmissionDelay) {
-			particles.Clear();
-			particles.Play();
-			delay -= EmissionDelay;
+		if (delay >= StunWaveDelay) {
+			stunParticles.Clear();
+			stunParticles.Play();
+			delay -= StunWaveDelay;
 		}
 	}
 
@@ -41,9 +43,8 @@ public class ParticleCollisions : MonoBehaviour {
     }
 
 	public void SetColor(Color color) {
-		var main = particles.main;
+		var main = stunParticles.main;
 		main.startColor = color;
-		//particles.startColor = color;
 	}
 
 }

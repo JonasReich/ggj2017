@@ -74,11 +74,15 @@ public class PlayerController : MonoBehaviour {
 			vertical = 1f;
 
         if(!m_bStunned)
-            m_Rigidbody.velocity = new Vector3(Time.deltaTime * Input.GetAxis("HorizontalP" + m_iPlayerId), Time.deltaTime * -1 * Input.GetAxis("VerticalP" + m_iPlayerId)) * 25;
+		{
+            m_Rigidbody.velocity = new Vector3(
+					Time.deltaTime * horizontal,
+					Time.deltaTime * -1 * vertical) * 25;
+		}
 
-            if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
-            {
-                m_Particle.SetActive(true);
+		if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
+		{
+			m_Particle.SetActive(true);
                 Debug.Log(m_Particle.activeInHierarchy);
                 if (!IsInvoking())
                     Invoke("ResetParticle", 0.5f);
