@@ -25,7 +25,9 @@ public class OnParticleCollisions : MonoBehaviour {
 
 		delay += Time.deltaTime;
 		if (delay >= EmissionDelay) {
-			particles.Emit(450);
+			Debug.Log("parti");
+			particles.Clear();
+			particles.Play();
 			delay -= EmissionDelay;
 		}
 	}
@@ -38,7 +40,7 @@ public class OnParticleCollisions : MonoBehaviour {
 			return;
 
 		if (station.GetOwner() != pc.GetId())
-			pc.Stun();
+			pc.Stun(station.GetOwner());
 		
         //particles.animation.gameObject.SetActive(false);
         //TestEvent.Invoke();

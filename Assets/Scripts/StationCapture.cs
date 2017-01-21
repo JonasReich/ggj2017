@@ -30,12 +30,10 @@ public class StationCapture : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		/*
-		if (playersInBounds != 1)
+		if (!playerCapturing) {
+			//Debug.Log("stop");
 			return;
-		*/
-		if (!playerCapturing)
-			return;
+		}
 
 		for (int i = 0; i < 4; i++) {
 			if (inBounds[i]) {
@@ -66,6 +64,8 @@ public class StationCapture : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
+		if (collider.GetType() != typeof(CircleCollider2D))
+			return;
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent<PlayerController>();
 		if (pc == null)
@@ -73,10 +73,13 @@ public class StationCapture : MonoBehaviour {
 		inBounds[pc.GetId()] = true;
 		playersInBounds++;
 		playerCapturing = (playersInBounds == 1);
+		Debug.Log("inbounds: " + playersInBounds);
 		Debug.Log("Entered by player " + pc.GetId());
 	}
 
 	void OnTriggerExit2D(Collider2D collider) {
+		if (collider.GetType() != typeof(CircleCollider2D))
+			return;
 		PlayerController pc = (PlayerController)
 			collider.gameObject.GetComponent(typeof(PlayerController));
 		if (pc == null)
@@ -85,6 +88,7 @@ public class StationCapture : MonoBehaviour {
 		timeInBounds[pc.GetId()] = 0f;
 		playersInBounds--;
 		playerCapturing = (playersInBounds == 1);
+		Debug.Log("inbounds: " + playersInBounds);
 		Debug.Log("Exited by player " + pc.GetId());
 	}
 
