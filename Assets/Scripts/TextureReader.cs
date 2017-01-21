@@ -12,6 +12,13 @@ namespace NONE
 
         public ColorAndPrefabDictionary dict;
 
+		public Vector2 GetSize() {
+			return new Vector2(inputTexture.width, inputTexture.height * 0.5f);
+		}
+
+		public Vector2 GetPos() {
+			return new Vector2(-0.5f, -0.25f);
+		}
 
         void Awake()
         {

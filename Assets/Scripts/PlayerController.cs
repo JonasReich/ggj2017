@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using NONE;
 
 public class PlayerController : MonoBehaviour {
 
@@ -20,9 +19,13 @@ public class PlayerController : MonoBehaviour {
 
 	public float knockBackTime = 2f;
 
+	public GameObject Level;
+
     private string m_sHorizontalAxisName;
     private string m_sVerticalAxisName;
 	private KeyCode keyUp, keyDown, keyLeft, keyRight, keyAttack;
+
+	private Vector2 levelSize, levelPos;
 
     void Awake ()
 	{
@@ -31,6 +34,11 @@ public class PlayerController : MonoBehaviour {
         m_Rigidbody = this.GetComponent<Rigidbody2D>();
         Collider.enabled = false;
         m_Particle.SetActive(false);
+
+		var tr = Level.GetComponent<TextureReader>();
+		levelSize = tr.GetSize();
+		Debug.Log(levelSize);
+		levelPos = tr.GetPos();
     }
 
 	public void Initialize(int id) {
@@ -81,17 +89,17 @@ public class PlayerController : MonoBehaviour {
 					Time.deltaTime * horizontal,
 					Time.deltaTime * -1 * vertical) * 50f;
 			Vector2 pos = m_Rigidbody.position;
-			Debug.Log(pos.x);
+			//Debug.Log(pos.x);
 
-			if (pos.x >= 19f)
-				pos.x = 0f;
-			else if (pos.x < 0f)
-				pos.x = 19f;
+			if (pos.x >= levelPos.x + levelSize.x)
+				pos.x = levelPos.x;
+			else if (pos.x < levelPos.x)
+				pos.x = levelPos.x + levelSize.x;
 
-			if (pos.y >= 19f)
-				pos.y = 0f;
-			else if (pos.y < 0f)
-				pos.y = 19f;
+			if (pos.y >= levelPos.y + levelSize.y)
+				pos.y = levelPos.y;
+			else if (pos.y < levelPos.y)
+				pos.y = levelPos.y + levelSize.y;
 
 			m_Rigidbody.position = pos;
 		} else {
