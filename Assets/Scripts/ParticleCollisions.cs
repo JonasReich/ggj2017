@@ -42,8 +42,6 @@ public class ParticleCollisions : MonoBehaviour {
 		if (pc == null)
 			return;
 
-		Debug.Log("inhere");
-
 		if (station.GetOwner() != pc.GetId())
 			pc.Stun(station.GetOwner());
     }

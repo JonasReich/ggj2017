@@ -70,7 +70,6 @@ public class StationCapture : MonoBehaviour {
 			collider.gameObject.GetComponent<PlayerController>();
 		if (pc == null)
 			return;
-        particles.SetIndicationColor(Color.clear);
 
         inBounds[pc.GetId()] = true;
 		playersInBounds++;
@@ -79,6 +78,8 @@ public class StationCapture : MonoBehaviour {
 		} else if (playersInBounds != 0) {
 			playerCapturing = false;
 		}
+		if (pc.GetId() != owner)
+			particles.SetIndicationColor(Color.clear);
 
 		Debug.Log("Entered by player " + pc.GetId());
 	}
@@ -103,6 +104,8 @@ public class StationCapture : MonoBehaviour {
 					playerCapturing = true;
 			}
 		}
+		if (!captured && playerCapturing == false)
+			particles.SetIndicationColor(Color.white);
 
 		Debug.Log("Exited by player " + pc.GetId());
 	}
