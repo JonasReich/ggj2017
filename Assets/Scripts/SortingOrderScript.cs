@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class SortingOrderScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Awake () {
+	public int offset;
+	SpriteRenderer spriteRenderer;
 
-        this.GetComponent<SpriteRenderer>().sortingOrder = -1 + (int)this.transform.position.y * -1;
-		
+	void Awake () {
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-		
+		spriteRenderer.sortingOrder = (int) (offset -1 + transform.position.y * -2);
 	}
 }
