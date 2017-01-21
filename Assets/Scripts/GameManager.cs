@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 
 
 	void Awake () {
-		//Input.GetJoystickNames().Length
+        NumPlayers = Input.GetJoystickNames().Length;
         PlayerArray = new PlayerController[NumPlayers];
 
         for (int i = 0; i < NumPlayers; i++) {

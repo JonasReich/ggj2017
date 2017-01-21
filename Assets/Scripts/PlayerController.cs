@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer m_Sprite;
     [SerializeField]
     private GameObject m_Particle;
+    private Rigidbody2D m_Rigidbody;
 
     private string m_sHorizontalAxisName;
     private string m_sVerticalAxisName;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 	{
         Collider = this.GetComponent<CircleCollider2D>();
         m_Sprite = this.GetComponent<SpriteRenderer>();
+        m_Rigidbody = this.GetComponent<Rigidbody2D>();
         Collider.enabled = false;
         m_Particle.SetActive(false);
     }
@@ -72,11 +74,14 @@ public class PlayerController : MonoBehaviour {
 			vertical = 1f;
 
         if(!m_bStunned)
-		{
-			transform.position += new Vector3(
-					Time.deltaTime * horizontal,
-					Time.deltaTime * -1f * vertical);
-            if (Input.GetButtonDown("A_P" + m_iPlayerId))
+            m_Rigidbody.velocity = new Vector3(Time.deltaTime * Input.GetAxis("HorizontalP" + m_iPlayerId), Time.deltaTime * -1 * Input.GetAxis("VerticalP" + m_iPlayerId)) * 25;
+
+            if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
+            {
+                m_Particle.SetActive(true);
+                Debug.Log(m_Particle.activeInHierarchy);
+                if (!IsInvoking())
+                    Invoke("ResetParticle", 0.5f);
                 Collider.enabled = true;
 		}
 

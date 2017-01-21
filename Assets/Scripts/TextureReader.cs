@@ -41,7 +41,7 @@ namespace NONE
                     GameObject prefab = dict.Find(inputTexture.GetPixel(x, y));
 
                     if (prefab != null)
-                        Instantiate(prefab, new Vector3(x, y), new Quaternion(), transform);
+                        Instantiate(prefab, new Vector3(x, y - (0.5f * y)), new Quaternion(), transform);
                 }
             }
         }
