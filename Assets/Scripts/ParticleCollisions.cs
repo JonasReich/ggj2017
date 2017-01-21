@@ -32,20 +32,6 @@ public class ParticleCollisions : MonoBehaviour {
 		}
 	}
 
-    void OnParticleCollision(GameObject other)
-    {
-		if (other == this.gameObject)
-			return;
-
-		PlayerController pc = (PlayerController)
-				other.GetComponent<PlayerController>();
-		if (pc == null)
-			return;
-
-		if (station.GetOwner() != pc.GetId())
-			pc.Stun(station.GetOwner());
-    }
-
 	public void SetStunColor(Color color) {
 		var main = stunParticles.main;
 		main.startColor = color;

@@ -105,7 +105,7 @@ public class StationCapture : MonoBehaviour {
 			}
 		}
 		if (!captured && playerCapturing == false)
-			particles.SetIndicationColor(Color.white);
+			particles.SetIndicationColor(Color.grey);
 
 		Debug.Log("Exited by player " + pc.GetId());
 	}
@@ -128,7 +128,7 @@ public class StationCapture : MonoBehaviour {
 		for (int i = 0; i < inBounds.Length; i++)
 			inBounds[i] = false;
 		particles.SetStunColor(Color.clear);
-		particles.SetIndicationColor(Color.white);
+		particles.SetIndicationColor(Color.grey);
 
 		playerCapturing = false;
 	}
