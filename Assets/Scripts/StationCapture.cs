@@ -41,7 +41,8 @@ public class StationCapture : MonoBehaviour {
             owner = -1;
             Level = 0;
             particles.DecStunWaveDelay();
-            Reset();
+            if (!IsInvoking())
+                Invoke("Reset", 3.0f);
 
             return;
         }
@@ -174,6 +175,7 @@ public class StationCapture : MonoBehaviour {
         playersInBounds = 0;
 		levelIndication.SetLevelIndication(0);
 	}
+
 
     public void IncLvl(int i)
     {
