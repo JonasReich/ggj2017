@@ -15,8 +15,6 @@ public class StationCapture : MonoBehaviour {
 	private int owner = -1;
 	private bool playerCapturing = false;
 
-	public GameObject GameManager;
-
 	private GameManager game;
 	private ParticleCollisions particles;
 
@@ -26,23 +24,33 @@ public class StationCapture : MonoBehaviour {
 		timeInBounds = new float[4];
 		inBounds = new bool[4];
 		particles = (ParticleCollisions) GetComponent<ParticleCollisions>();
-		game = (GameManager) GameManager.GetComponent<GameManager>();
+		game = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (!playerCapturing) {
+
+        //Debug.Log(Level + "lvl");
+        if (Level >= 5)
+        {
+            game.SetGameFinished(true);
+        }
+            
+
+        if (!playerCapturing || game.gameFinished) {
+            if (!captured)
+            {
+                Level = 0;
+                particles.DecStunWaveDelay();
+            } 
 			return;
 		}
         
 
-        if (Level == 5)
-            Debug.LogError("Winning!!!!!!!!!!!!");
-
 		for (int i = 0; i < 4; i++) {
 			if (inBounds[i]) {
 				timeInBounds[i] += Time.deltaTime;
-				Debug.Log("Progress for player " + i + ": " + timeInBounds[i]);
+				//sDebug.Log("Progress for player " + i + ": " + timeInBounds[i]);
 				if (timeInBounds[i] >= CaptureTime) {
 					captureStation(i);
 					resetProgress();
@@ -57,9 +65,11 @@ public class StationCapture : MonoBehaviour {
 		owner = playerId;
 		particles.SetStunColor(game.GetPlayerColor(playerId));
 		particles.SetIndicationColor(game.GetPlayerColor(playerId));
-		playerCapturing = false;
+        Level = 0;
+        particles.DecStunWaveDelay();
+        playerCapturing = false;
 
-		Debug.Log("Captured by player " + playerId);
+		//Debug.Log("Captured by player " + playerId);
 	}
 
 	private void resetProgress() {
@@ -87,7 +97,7 @@ public class StationCapture : MonoBehaviour {
 		if (pc.GetId() != owner)
 			particles.SetIndicationColor(Color.clear);
 
-		Debug.Log("Entered by player " + pc.GetId());
+		//Debug.Log("Entered by player " + pc.GetId());
 	}
 
 	void OnTriggerExit2D(Collider2D collider) {
@@ -117,7 +127,7 @@ public class StationCapture : MonoBehaviour {
 				particles.SetIndicationColor(game.PlayerColor[owner]);
 		}
 
-		Debug.Log("Exited by player " + pc.GetId());
+		//Debug.Log("Exited by player " + pc.GetId());
 	}
 
 	public bool PlayerCapturing() {
@@ -142,5 +152,11 @@ public class StationCapture : MonoBehaviour {
 
 		playerCapturing = false;
 	}
+
+    public void IncLvl(int i)
+    {
+        if(captured)
+            Level += i;
+    }
 
 }

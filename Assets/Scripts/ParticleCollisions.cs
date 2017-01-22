@@ -2,8 +2,8 @@
 
 public class ParticleCollisions : MonoBehaviour {
     //public UnityEvent TestEvent;
-
-	public float StunWaveDelay = 3f;
+    [SerializeField]
+	private float StunWaveDelay = 5f;
 	public GameObject StunParticles, OwnerParticles;
 
 	private ParticleSystem stunParticles, ownerParticles;
@@ -42,4 +42,12 @@ public class ParticleCollisions : MonoBehaviour {
 		main.startColor = color;
 	}
 
+    public void DecStunWaveDelay(float delay)
+    {
+        StunWaveDelay -= delay;
+    }
+    public void DecStunWaveDelay()
+    {
+        StunWaveDelay = 5f;
+    }
 }

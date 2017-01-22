@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour {
 		m_iPlayerId = id;
         m_sHorizontalAxisName = "HorizontalP" + m_iPlayerId;
         m_sVerticalAxisName = "VerticalP" + m_iPlayerId;
-        Debug.Log(m_sHorizontalAxisName);
+        //Debug.Log(m_sHorizontalAxisName);
 
-		Debug.Log(m_iPlayerId);
+		//Debug.Log(m_iPlayerId);
 		if (m_iPlayerId == 0)
 		{
 			keyUp = KeyCode.UpArrow;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
 		{
             MovementSpeedFaktor = 10f;
             m_Particle.SetActive(true);
-                Debug.Log(m_Particle.activeInHierarchy);
+                //Debug.Log(m_Particle.activeInHierarchy);
                 if (!IsInvoking())
                     Invoke("ResetParticle", knockBackTime);
                 Collider.enabled = true;
@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour {
     {
 		if (m_bStunned)
 			return;
-		Debug.Log("Player " + this.GetId() + " has been stunned");
+		//Debug.Log("Player " + this.GetId() + " has been stunned");
         m_bStunned = true;
         Vector2 AttackerPos = GameManager.GetPlayerPos(AttackerID);
         Vector2 thisPos = GameManager.GetPlayerPos(m_iPlayerId);
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour {
 	public void SetLevel(TextureReader level) {
 		levelSize = level.GetSize();
 		levelPos = level.GetPos();
-		Debug.Log("Level size: " + levelSize);
+		//Debug.Log("Level size: " + levelSize);
 	}
 
     public void SetPosition(Vector2 Pos)

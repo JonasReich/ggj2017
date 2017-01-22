@@ -6,20 +6,39 @@ public class StunCollisions : MonoBehaviour {
 
 	public GameObject RadioStation;
 	private StationCapture station;
+    private ParticleCollisions ParticleCollision;
     bool hit = false;
+    float timer = 0;
+
+    private GameManager game;
 
     // Use this for initialization
     void Start () {
 		station = RadioStation.GetComponent<StationCapture>();
-	}
+        ParticleCollision = station.GetComponent<ParticleCollisions>();
+        game = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (game.gameFinished)
+            return;
+
+        timer += Time.deltaTime;
+        if (timer >= 30)
+        {
+            if (hit == false)
+            {
+                station.IncLvl(1);
+                ParticleCollision.DecStunWaveDelay(station.Level / 2);
+            }
+            timer = 0;
+        }
 		
 	}
 
     void OnParticleCollision(GameObject other) {
-		if (other == RadioStation)
+		if (other == RadioStation || game.gameFinished)
 			return;
 
 		PlayerController pc = (PlayerController)
@@ -27,15 +46,18 @@ public class StunCollisions : MonoBehaviour {
 		if (pc == null)
 			return;
 
-		Debug.Log("inhere");
+		//Debug.Log("inhere");
 
 		if (station.GetOwner() != pc.GetId() && !hit)
         {
-            station.GetComponent<StationCapture>().Level++;
-            station.GetComponent<ParticleCollisions>().StunWaveDelay -= station.GetComponent<StationCapture>().Level++;
+            if(hit == false) { 
+            station.IncLvl(1);
+            ParticleCollision.DecStunWaveDelay(station.Level / 2);
             hit = true;
+            }
+            
             if (!IsInvoking())
-                Invoke("ResetHit", 1.0f);
+                Invoke("ResetHit", 2);
         }
 			
     }
