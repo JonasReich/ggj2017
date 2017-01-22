@@ -11,6 +11,8 @@ public class StunCollisions : MonoBehaviour {
     float timer = 0;
 
     private GameManager game;
+    public AudioClip[] sounds;
+
 
     // Use this for initialization
     void Start () {
@@ -50,7 +52,8 @@ public class StunCollisions : MonoBehaviour {
 
 		if (station.GetOwner() != pc.GetId() && !hit)
         {
-            if(hit == false) { 
+            if(hit == false) {
+            PlayRandomSound();
             station.IncLvl(1);
             ParticleCollision.DecStunWaveDelay(station.Level / 2);
             hit = true;
@@ -65,6 +68,14 @@ public class StunCollisions : MonoBehaviour {
     void ResetHit()
     {
         hit = false;
+    }
+
+    void PlayRandomSound()
+    {
+        if (GetComponent<AudioSource>().isPlaying)
+            return;
+            GetComponent<AudioSource>().clip = sounds[Random.Range(0, sounds.Length)];
+            GetComponent<AudioSource>().Play();        
     }
 
 }

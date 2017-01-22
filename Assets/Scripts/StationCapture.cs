@@ -157,6 +157,7 @@ public class StationCapture : MonoBehaviour {
     {
         if(captured)
             Level += i;
+        GetComponent<AudioSource>().Play();
     }
 
 }

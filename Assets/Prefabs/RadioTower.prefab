@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198954661474317088}
   - component: {fileID: 199975584384676564}
   - component: {fileID: 114575303261462296}
-  - component: {fileID: 82543312530652462}
+  - component: {fileID: 82958530524898518}
   m_Layer: 2
   m_Name: StunWave
   m_TagString: Untagged
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 61764357217727422}
   - component: {fileID: 114938761859796066}
   - component: {fileID: 114947752122141766}
+  - component: {fileID: 82948758136078230}
   m_Layer: 2
   m_Name: RadioTower
   m_TagString: Untagged
@@ -88,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1340124472054364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.49, y: -2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4879196857621672}
@@ -143,7 +144,87 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.25}
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
---- !u!82 &82543312530652462
+--- !u!82 &82948758136078230
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1340124472054364}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: adb83afc746928f4c969a9abd9344083, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &82958530524898518
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -152,7 +233,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dac25e466553c5c43852159527e9aff0, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -247,6 +328,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RadioStation: {fileID: 1340124472054364}
+  sounds:
+  - {fileID: 8300000, guid: dac25e466553c5c43852159527e9aff0, type: 3}
+  - {fileID: 8300000, guid: dac25e466553c5c43852159527e9aff0, type: 3}
+  - {fileID: 8300000, guid: dac25e466553c5c43852159527e9aff0, type: 3}
+  - {fileID: 8300000, guid: dac25e466553c5c43852159527e9aff0, type: 3}
 --- !u!114 &114938761859796066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2918,7 +3004,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1505281171
+  randomSeed: 363038410
   InitialModule:
     serializedVersion: 3
     enabled: 1
