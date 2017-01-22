@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	public Color[] PlayerColor;
 	public float RoundTime = 30f;
 	public TextureReader Level;
+    public Sprite Panda;
+    public Sprite Mouse;
 
 	public GUIStyle style, winlabelstyle, winbuttonstyle;
 
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour {
 
 	private float countDown = 1;
 	public bool gameFinished = false;
+    public bool CharSelection = false;
 
 	void Awake () {
         if (OnlyUseJoysticks) {
@@ -105,6 +108,27 @@ public class GameManager : MonoBehaviour {
 				resetPlayers();
 			}
 		}
+        if(CharSelection)
+        {
+            string PlayerChoose = "Choose your Charakter";
+            GUI.Label(new Rect(Screen.width / 2 - 125, Screen.height / 2 - 75, 350, 250),
+                    PlayerChoose, winlabelstyle);
+            for(int i = 0; i < NumPlayers; i++)
+            {
+                if (GUI.Button(new Rect(Screen.width / 2 - 175, Screen.height / 2 + 100, 250, 100), "Propaganda Panda", winbuttonstyle))
+                {
+                    PlayerArray[i].SetSprite(Panda);
+                    CharSelection = false;
+                }
+                if (GUI.Button(new Rect(Screen.width / 2 + 175, Screen.height / 2 + 100, 250, 100), "Mouse sullini", winbuttonstyle))
+                {
+                    PlayerArray[i].SetSprite(Mouse);
+                    CharSelection = false;
+                }
+            }
+
+                
+        }
 
 		int minutes = (int) (countDown / 60f);
 		int seconds = ((int) countDown) - minutes * 60;
@@ -121,6 +145,13 @@ public class GameManager : MonoBehaviour {
 			stunPlayers();
 			return;
 		}
+
+        if(countDown == RoundTime)
+        {
+            CharSelection = true;
+            stunPlayers();
+            return;
+        }
 
 		countDown -= Time.deltaTime;
 		if (countDown <= 0f) {

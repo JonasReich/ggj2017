@@ -163,8 +163,13 @@ public class PlayerController : MonoBehaviour {
     }
 
 	public void MoveToSpawn() {
-		// where?
-	}
+        if (m_iPlayerId < 2)
+            SetPosition(new Vector2(1 + m_iPlayerId, 2 + m_iPlayerId));
+        if (m_iPlayerId == 2)
+            SetPosition(new Vector2(m_iPlayerId, m_iPlayerId));
+        if (m_iPlayerId == 3)
+            SetPosition(new Vector2(1, m_iPlayerId));
+    }
 
     public void Reset()
     {
@@ -203,5 +208,10 @@ public class PlayerController : MonoBehaviour {
     public void SetPosition(Vector2 Pos)
     {
         transform.position = Pos;
+    }
+
+    public void SetSprite(Sprite _sprite)
+    {
+        m_Sprite.sprite = _sprite;
     }
 }
