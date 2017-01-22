@@ -333,6 +333,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dac25e466553c5c43852159527e9aff0, type: 3}
   - {fileID: 8300000, guid: dac25e466553c5c43852159527e9aff0, type: 3}
   - {fileID: 8300000, guid: dac25e466553c5c43852159527e9aff0, type: 3}
+  NotSetAlready: 1
+  ParticlesForLvl2: 5
 --- !u!114 &114938761859796066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -360,6 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CaptureTime: 2
   Level: 0
+  owner: -1
 --- !u!198 &198136207112822534
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 	public TextureReader Level;
     public Sprite Panda;
     public Sprite Mouse;
-
+    public int Lvl5WinnerID = -1;
 	public GUIStyle style, winlabelstyle, winbuttonstyle;
 
     [SerializeField]
@@ -55,8 +55,19 @@ public class GameManager : MonoBehaviour {
 		countDown = RoundTime;
     }
 
-	private string getWinningPlayerColor() {
-		//todo unentschieden
+	private string getWinningPlayerColor(int Lvl5Winner = -1) {
+		
+        if(Lvl5Winner != -1)
+        {
+            switch (Lvl5Winner)
+            {
+                case 0: return "Red";
+                case 1: return "Green";
+                case 2: return "Blue";
+                case 3: return "Yellow";
+                default: return "No";
+            }
+        }
 
 		int[] stations = new int[NumPlayers];
 		foreach (StationCapture station in Level.GetComponentsInChildren(typeof(StationCapture))) {
@@ -97,7 +108,7 @@ public class GameManager : MonoBehaviour {
 
 	void OnGUI() {
 		if (gameFinished) {
-			string win = getWinningPlayerColor() + " Player Won!";
+			string win = getWinningPlayerColor(Lvl5WinnerID) + " Player Won!";
 			GUI.Label(new Rect(Screen.width / 2 - 125, Screen.height / 2 - 75, 250, 50),
 					win, winlabelstyle);
 			if (GUI.Button(new Rect(Screen.width / 2 - 125, Screen.height / 2 - 25, 250, 100),
@@ -171,9 +182,9 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-    public void SetGameFinished(bool finished)
+    public void SetGameFinished(int Lvl5Winner = -1)
     {
-        gameFinished = finished;
+        gameFinished = true;
     }
 
 	private void resetPlayers() {

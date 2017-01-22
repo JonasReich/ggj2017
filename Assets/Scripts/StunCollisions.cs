@@ -89,7 +89,8 @@ public class StunCollisions : MonoBehaviour {
 
         if (station.Level >= 5)
         {
-            game.SetGameFinished(true);
+            game.Lvl5WinnerID = station.owner;
+            game.SetGameFinished();
         }
 
         if (game.gameFinished)
