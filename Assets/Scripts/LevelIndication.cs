@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class LevelIndication : MonoBehaviour {
 
-	public GameObject RadioTower;
 	public Sprite[] LevelPoints;
 
-	private StationCapture station;
 	private SpriteRenderer spriteRenderer;
 
 	void Awake() {
-		station = RadioTower.GetComponent<StationCapture>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		Debug.Log("start");
 	}
 
 	// Update is called once per frame
@@ -29,7 +25,6 @@ public class LevelIndication : MonoBehaviour {
 			spriteRenderer.enabled = true;
 			spriteRenderer.sprite = LevelPoints[level-1];
 		}
-		Debug.Log("Level Indication is " + level);
 	}
 
 	public void SetLevelIndicationColor(Color color) {

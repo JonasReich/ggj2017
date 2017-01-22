@@ -11,7 +11,6 @@ public class StunCollisions : MonoBehaviour {
     bool hit = false;
     float timer = 0;
 
-    public GameObject AButton;
     private GameManager game;
     public AudioClip[] sounds;
 
@@ -70,12 +69,10 @@ public class StunCollisions : MonoBehaviour {
                 ParticleCollision.StunWaveDelay = int.MaxValue;
                 var ParticleCollisionModulePrivate = PS.collision;
                 ParticleCollisionModulePrivate.minKillSpeed = 26;
-                AButton.SetActive(true);
                 }
             if (Input.GetButtonDown("A_P" + gameObject.GetComponentInParent<StationCapture>().owner) && m_fCooldown < 0.0f)
             {
                 if (CastRing == false) {
-                    AButton.SetActive(false);
                     CastRing = true;
                     ParticleCollision.StunWaveDelay = 0;
 
@@ -87,7 +84,6 @@ public class StunCollisions : MonoBehaviour {
         }
         if (station.Level == 4)
         {
-            AButton.SetActive(false);
             ParticleCollision.StunWaveDelay = 2f;
         }
 
