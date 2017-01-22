@@ -39,7 +39,12 @@ public class GameManager : MonoBehaviour {
                 PlayerTMP.name = "Player" + i;
                 PlayerTMP.SetGameManager(this);
 				PlayerTMP.SetLevel(Level);
-                //PlayerTMP.SetPosition(new Vector2(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f)));
+                if (i < 2)
+                PlayerTMP.SetPosition(new Vector2(1+i,2+i));
+                if (i==2)
+                PlayerTMP.SetPosition(new Vector2(i,i));
+                if (i == 3)
+                PlayerTMP.SetPosition(new Vector2(1, i));
                 PlayerArray[i] = PlayerTMP;
                 PlayerTMP.Initialize(i);
         }
