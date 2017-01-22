@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour {
         if(CharSelection)
         {
             float offset = 375;
+            Debug.Log(CharSelection);
             for(int i = 0; i < NumPlayers; i++)
             {
                 string PlayerChoose = "Player " + i + ":\n Choose your Charakter";
@@ -132,8 +133,12 @@ public class GameManager : MonoBehaviour {
                 offset += 375;
 
             }
+            if (GUI.Button(new Rect(Screen.width /2 - 125, Screen.height / 2 - 250, 250, 100), "ready", winbuttonstyle))
+            {
+                countDown -= 0.5f;
+                CharSelection = false;
+            }
 
-                
         }
 
 		int minutes = (int) (countDown / 60f);
