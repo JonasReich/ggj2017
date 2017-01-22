@@ -19,6 +19,9 @@ public class ParticleCollisions : MonoBehaviour {
 	}
 
 	void Update() {
+
+        OwnerParticles.transform.localScale = 4 * new Vector3(station.Level, station.Level, station.Level);
+
 		if (!station.IsCaptured() || station.PlayerCapturing()) {
 			delay = 0f;
 			return;

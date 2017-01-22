@@ -18,11 +18,11 @@ public class StationCapture : MonoBehaviour {
 	private GameManager game;
 	private ParticleCollisions particles;
 
-
 	// Use this for initialization
 	void Start () {
 		timeInBounds = new float[4];
 		inBounds = new bool[4];
+        
 		particles = (ParticleCollisions) GetComponent<ParticleCollisions>();
 		game = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 	}
