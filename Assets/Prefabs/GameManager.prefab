@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f117fe2d7c6e25141a4c126bfe6fa49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnlyUseJoysticks: 0
+  OnlyUseJoysticks: 1
   NumPlayers: 3
   PlayerColor:
   - {r: 0.8431373, g: 0.20000002, b: 0.20784315, a: 1}
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Normal:
       m_Background: {fileID: 0}
       m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_TextColor: {r: 0, g: 1, b: 0.006896496, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_ScaledBackgrounds: []

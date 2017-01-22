@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour {
 			label = minutes + ":0" + seconds;
 		else
 			label = minutes + ":" + seconds;
-		GUI.Label(new Rect(Screen.width - 80, 10, 50, 30), label, style);
+		GUI.Label(new Rect((Screen.width / 4) * 3 - 25, 10, 75, 37.5f), label, style);
 	}
 
 	void Update () {
