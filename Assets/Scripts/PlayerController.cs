@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
     private int m_iPlayerId;
     [SerializeField]
-    private float m_fStunDuration = 1.5f;
+    private float m_fStunDuration = 0.5f;
     [SerializeField]
     private GameManager GameManager;
     private bool m_bStunned = false;
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour {
             m_Rigidbody.velocity = Vector3.zero;
 		}
 
-		if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
+		if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f && !m_bStunned)
 		{
             this.GetComponent<AudioSource>().Play();
             MovementSpeedFaktor = 10f;
@@ -163,8 +163,13 @@ public class PlayerController : MonoBehaviour {
     }
 
 	public void MoveToSpawn() {
-		// where?
-	}
+        if (m_iPlayerId < 2)
+            SetPosition(new Vector2(1 + m_iPlayerId, 2 + m_iPlayerId));
+        if (m_iPlayerId == 2)
+            SetPosition(new Vector2(m_iPlayerId, m_iPlayerId));
+        if (m_iPlayerId == 3)
+            SetPosition(new Vector2(1, m_iPlayerId));
+    }
 
     public void Reset()
     {

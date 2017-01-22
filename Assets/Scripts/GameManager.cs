@@ -110,12 +110,12 @@ public class GameManager : MonoBehaviour {
 		}
         if(CharSelection)
         {
-            float offset = 375;
+            float offset = 300;
             Debug.Log(CharSelection);
             for(int i = 0; i < NumPlayers; i++)
             {
-                string PlayerChoose = "Player " + i + ":\n Choose your Charakter";
-                GUI.Label(new Rect(Screen.width - offset, Screen.height / 2 - 75, 350, 250),
+                string PlayerChoose = "Player " + i + ":\nChoose your\nCharakter";
+                GUI.Label(new Rect(Screen.width - offset, Screen.height / 2 - 75, 250, 150),
                         PlayerChoose, winlabelstyle);
 
                 if (GUI.Button(new Rect(Screen.width - offset, Screen.height / 2 + 100, 275, 100), "Propaganda Panda", winbuttonstyle))
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour {
                     CharSelection = false;
                     break;
                 }
-                offset += 375;
+                offset += 300;
 
             }
             if (GUI.Button(new Rect(Screen.width /2 - 125, Screen.height / 2 - 250, 250, 100), "ready", winbuttonstyle))

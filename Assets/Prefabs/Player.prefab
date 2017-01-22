@@ -249,9 +249,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleSpriteRenderer: {fileID: 212912787595521438}
   m_iPlayerId: 0
-  m_fStunDuration: 5
+  m_fStunDuration: 0.5
   GameManager: {fileID: 0}
   Collider: {fileID: 58522524164611660}
+  m_fCooldown: 2
   m_Particle: {fileID: 1084326468181728}
   MovementSpeedFaktor: 4
   knockBackTime: 1
