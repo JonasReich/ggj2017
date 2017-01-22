@@ -204,4 +204,9 @@ public class PlayerController : MonoBehaviour {
     {
         transform.position = Pos;
     }
+
+    public void SetSprite(Sprite _sprite)
+    {
+        m_Sprite.sprite = _sprite;
+    }
 }
