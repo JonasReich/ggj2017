@@ -152,9 +152,12 @@ public class StationCapture : MonoBehaviour {
     public void IncLvl(int i)
     {
         if(captured)
+        {
             Level += i;
-        GetComponent<AudioSource>().Play();
-        GetComponentInChildren<StunCollisions>().NotSetAlready = true;
+            GetComponent<AudioSource>().Play();
+            GetComponentInChildren<StunCollisions>().NotSetAlready = true;
+        }
+            
 
     }
 
