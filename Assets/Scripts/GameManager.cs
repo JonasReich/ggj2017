@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private PlayerController PlayerPrefab;
 
-	private float countDown = 1;
-	public bool gameFinished = false;
+	private float countDown;
+	public bool gameFinished;
     public bool CharSelection = false;
 
 	void Awake () {
@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour {
         }
 		
 		countDown = RoundTime;
+		gameFinished = false;
     }
 
 	private string getWinningPlayerColor(int Lvl5Winner = -1) {
