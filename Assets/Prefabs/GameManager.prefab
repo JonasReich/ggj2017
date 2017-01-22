@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyUseJoysticks: 0
-  NumPlayers: 2
+  NumPlayers: 3
   PlayerColor:
   - {r: 0.8431373, g: 0.20000002, b: 0.20784315, a: 1}
   - {r: 0.20784315, g: 0.9294118, b: 0.25882354, a: 1}
@@ -60,6 +60,8 @@ MonoBehaviour:
   - {r: 0.93725497, g: 0.8862746, b: 0.21568629, a: 1}
   RoundTime: 300
   Level: {fileID: 0}
+  Panda: {fileID: 21300000, guid: 9bbfb69b03c9cee4995e69d410e2554a, type: 3}
+  Mouse: {fileID: 21300000, guid: bc5646cf9d2640740acd4aa5da0ff884, type: 3}
   style:
     m_Name: style
     m_Normal:
@@ -265,3 +267,4 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 114026457828895910, guid: 55db4efe07086784d8f970a09e345a31,
     type: 2}
   gameFinished: 1
+  CharSelection: 0

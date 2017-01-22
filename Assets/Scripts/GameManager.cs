@@ -110,21 +110,27 @@ public class GameManager : MonoBehaviour {
 		}
         if(CharSelection)
         {
-            string PlayerChoose = "Choose your Charakter";
-            GUI.Label(new Rect(Screen.width / 2 - 125, Screen.height / 2 - 75, 350, 250),
-                    PlayerChoose, winlabelstyle);
+            float offset = 375;
             for(int i = 0; i < NumPlayers; i++)
             {
-                if (GUI.Button(new Rect(Screen.width / 2 - 175, Screen.height / 2 + 100, 250, 100), "Propaganda Panda", winbuttonstyle))
+                string PlayerChoose = "Player " + i + ":\n Choose your Charakter";
+                GUI.Label(new Rect(Screen.width - offset, Screen.height / 2 - 75, 350, 250),
+                        PlayerChoose, winlabelstyle);
+
+                if (GUI.Button(new Rect(Screen.width - offset, Screen.height / 2 + 100, 275, 100), "Propaganda Panda", winbuttonstyle))
                 {
                     PlayerArray[i].SetSprite(Panda);
                     CharSelection = false;
+                    break;
                 }
-                if (GUI.Button(new Rect(Screen.width / 2 + 175, Screen.height / 2 + 100, 250, 100), "Mouse sullini", winbuttonstyle))
+                if (GUI.Button(new Rect(Screen.width - offset, Screen.height / 2 + 200, 275, 100), "Mouse sullini", winbuttonstyle))
                 {
                     PlayerArray[i].SetSprite(Mouse);
                     CharSelection = false;
+                    break;
                 }
+                offset += 375;
+
             }
 
                 
