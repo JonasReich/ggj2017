@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetButtonDown("A_P" + m_iPlayerId) && m_fCooldown < 0.0f)
 		{
-            this.GetComponent<AudioSource>().Play();
             MovementSpeedFaktor = 10f;
             m_Particle.SetActive(true);
                 //Debug.Log(m_Particle.activeInHierarchy);
@@ -116,7 +115,6 @@ public class PlayerController : MonoBehaviour {
 
 		if (attack && m_fCooldown < 0.0f)
 		{
-
 			m_Particle.SetActive(true);
 			Debug.Log(m_Particle.activeInHierarchy);
 			if (!IsInvoking())
