@@ -4,13 +4,13 @@ public class StationCapture : MonoBehaviour {
 
 	public float CaptureTime = 3.0f;
 
-	private bool[] inBounds;
-	private float[] timeInBounds;
-	private int playersInBounds;
+	public bool[] inBounds;
+	public float[] timeInBounds;
+	public int playersInBounds;
 
     public int Level;
 
-	private bool captured = false;
+	public bool captured = false;
 	// Player ID
 	public int owner = -1;
 	private bool playerCapturing = false;
@@ -32,11 +32,28 @@ public class StationCapture : MonoBehaviour {
 	void Update () {
 
 
-            
+        if(game.gameFinished)
+        {
+            owner = -1;
+            Level = 0;
+            particles.DecStunWaveDelay();
+            Reset();
 
-        if (!playerCapturing || game.gameFinished) {
+            return;
+        }
+        int x = 0;
+        for (int i = 0; i < inBounds.Length; i++)
+        {
+            
+            if (inBounds[i])
+                x++;
+        }
+        playersInBounds = x;
+
+        if (!playerCapturing) {
             if (!captured)
             {
+                owner = -1;
                 Level = 0;
                 particles.DecStunWaveDelay();
             } 
@@ -50,7 +67,7 @@ public class StationCapture : MonoBehaviour {
 				//sDebug.Log("Progress for player " + i + ": " + timeInBounds[i]);
 				if (timeInBounds[i] >= CaptureTime) {
 					captureStation(i);
-					resetProgress();
+					resetProgress(i);
 				}
 			}
 		}
@@ -69,10 +86,10 @@ public class StationCapture : MonoBehaviour {
 		//Debug.Log("Captured by player " + playerId);
 	}
 
-	private void resetProgress() {
-		for (int i = 0; i < 4; i++) {
+	private void resetProgress(int i) {
+		
 			timeInBounds[i] = 0f;
-		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
@@ -144,9 +161,11 @@ public class StationCapture : MonoBehaviour {
 		captured = false;
 		for (int i = 0; i < inBounds.Length; i++)
 			inBounds[i] = false;
+        Level = 0;
 		particles.SetStunColor(Color.clear);
 		particles.SetIndicationColor(Color.grey);
 		playerCapturing = false;
+        playersInBounds = 0;
 	}
 
     public void IncLvl(int i)
