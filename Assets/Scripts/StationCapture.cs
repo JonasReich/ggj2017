@@ -10,6 +10,8 @@ public class StationCapture : MonoBehaviour {
 
     public int Level;
 
+	public GameObject LevelIndicator;
+
 	public bool captured = false;
 	// Player ID
 	public int owner = -1;
@@ -17,7 +19,7 @@ public class StationCapture : MonoBehaviour {
 
 	private GameManager game;
 	private ParticleCollisions particles;
-
+	private LevelIndication levelIndication;
 
     // Use this for initialization
     void Start () {
@@ -26,6 +28,8 @@ public class StationCapture : MonoBehaviour {
         
 		particles = (ParticleCollisions) GetComponent<ParticleCollisions>();
 		game = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+		levelIndication = LevelIndicator.GetComponent<LevelIndication>();
+		levelIndication.SetLevelIndication(0);
 	}
 
 	// Update is called once per frame
@@ -79,9 +83,11 @@ public class StationCapture : MonoBehaviour {
 		owner = playerId;
 		particles.SetStunColor(game.GetPlayerColor(playerId));
 		particles.SetIndicationColor(game.GetPlayerColor(playerId));
-        Level = 0;
         particles.DecStunWaveDelay();
         playerCapturing = false;
+		levelIndication.SetLevelIndicationColor(game.GetPlayerColor(playerId));
+        Level = 0;
+		IncLvl(1);
 
 		//Debug.Log("Captured by player " + playerId);
 	}
@@ -166,6 +172,7 @@ public class StationCapture : MonoBehaviour {
 		particles.SetIndicationColor(Color.grey);
 		playerCapturing = false;
         playersInBounds = 0;
+		levelIndication.SetLevelIndication(0);
 	}
 
     public void IncLvl(int i)
@@ -173,6 +180,7 @@ public class StationCapture : MonoBehaviour {
         if(captured)
         {
             Level += i;
+			levelIndication.SetLevelIndication(Level);
             GetComponent<AudioSource>().Play();
             GetComponentInChildren<StunCollisions>().NotSetAlready = true;
         }

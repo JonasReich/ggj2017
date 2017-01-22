@@ -123,7 +123,6 @@ public class GameManager : MonoBehaviour {
         if(CharSelection)
         {
             float offset = 300;
-            Debug.Log(CharSelection);
             for(int i = 0; i < NumPlayers; i++)
             {
                 string PlayerChoose = "Player " + i + ":\nChoose your\nCharakter";
