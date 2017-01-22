@@ -112,7 +112,7 @@ public class StationCapture : MonoBehaviour {
 		playersInBounds++;
 		if (playersInBounds == 1 && pc.GetId() != owner) {
 			playerCapturing = true;
-		} else if (playersInBounds != 0) {
+		} else if (playersInBounds != 1) {
 			playerCapturing = false;
 		}
 		if (pc.GetId() != owner)
