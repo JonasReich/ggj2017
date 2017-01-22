@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
 public class ParticleCollisions : MonoBehaviour {
-    //public UnityEvent TestEvent;
-    [SerializeField]
-	private float StunWaveDelay = 5f;
+	public float StunWaveDelay = 5f;
 	public GameObject StunParticles, OwnerParticles;
 
 	private ParticleSystem stunParticles, ownerParticles;

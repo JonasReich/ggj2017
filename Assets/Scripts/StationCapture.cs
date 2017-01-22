@@ -12,14 +12,15 @@ public class StationCapture : MonoBehaviour {
 
 	private bool captured = false;
 	// Player ID
-	private int owner = -1;
+	public int owner = -1;
 	private bool playerCapturing = false;
 
 	private GameManager game;
 	private ParticleCollisions particles;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		timeInBounds = new float[4];
 		inBounds = new bool[4];
         
@@ -30,11 +31,7 @@ public class StationCapture : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //Debug.Log(Level + "lvl");
-        if (Level >= 5)
-        {
-            game.SetGameFinished(true);
-        }
+
             
 
         if (!playerCapturing || game.gameFinished) {
@@ -149,7 +146,6 @@ public class StationCapture : MonoBehaviour {
 			inBounds[i] = false;
 		particles.SetStunColor(Color.clear);
 		particles.SetIndicationColor(Color.grey);
-
 		playerCapturing = false;
 	}
 
@@ -158,6 +154,8 @@ public class StationCapture : MonoBehaviour {
         if(captured)
             Level += i;
         GetComponent<AudioSource>().Play();
+        GetComponentInChildren<StunCollisions>().NotSetAlready = true;
+
     }
 
 }

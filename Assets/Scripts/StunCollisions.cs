@@ -7,11 +7,19 @@ public class StunCollisions : MonoBehaviour {
 	public GameObject RadioStation;
 	private StationCapture station;
     private ParticleCollisions ParticleCollision;
+    private PlayerController PlayerControll;
     bool hit = false;
     float timer = 0;
 
     private GameManager game;
     public AudioClip[] sounds;
+
+    public bool NotSetAlready = true;
+    public int ParticlesForLvl2 = 5;
+    private bool CastRing = false;
+
+
+    private float m_fCooldown = 2;
 
 
     // Use this for initialization
@@ -21,8 +29,64 @@ public class StunCollisions : MonoBehaviour {
         game = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 	
+    void FixedUpdate()
+    {
+        m_fCooldown -= Time.deltaTime;
+    }
 	// Update is called once per frame
 	void Update () {
+        if (station.Level == 2)
+        {
+            if (NotSetAlready)
+            {
+                
+                var PS = this.GetComponent<ParticleSystem>();
+                var ParticleSystemMain = PS.main;
+
+                if (!GetComponent<ParticleSystem>().IsAlive(false))
+                {
+                    NotSetAlready = false;
+                    print("Is Alive");
+                    ParticleSystemMain.maxParticles = ParticlesForLvl2;
+                    var ParticleCollisionModulePrivate = PS.collision;
+                    ParticleCollisionModulePrivate.bounce = 0.9f;
+                    ParticleCollisionModulePrivate.minKillSpeed = 0;
+
+                }
+            }
+        }
+        if (station.Level == 3)
+        {
+            if (NotSetAlready)
+            {
+                NotSetAlready = false;
+                var PS = this.GetComponent<ParticleSystem>();
+                var ParticleSystemMain = PS.main;
+                ParticleSystemMain.maxParticles = 450;
+                ParticleCollision.StunWaveDelay = int.MaxValue;
+                var ParticleCollisionModulePrivate = PS.collision;
+                ParticleCollisionModulePrivate.minKillSpeed = 26;
+            }
+            if (Input.GetButtonDown("A_P" + gameObject.GetComponentInParent<StationCapture>().owner) && m_fCooldown < 0.0f)
+            {
+                if (CastRing == false) {
+                CastRing = true;
+                ParticleCollision.StunWaveDelay = 0;
+
+                }
+            }
+            if (GetComponent<ParticleSystem>().IsAlive(false))
+            ParticleCollision.StunWaveDelay = int.MaxValue;
+            CastRing = false;
+        }
+           
+    
+
+        if (station.Level >= 5)
+        {
+            game.SetGameFinished(true);
+        }
+
         if (game.gameFinished)
             return;
 

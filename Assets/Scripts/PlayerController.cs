@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
     private GameManager GameManager;
     private bool m_bStunned = false;
     public CircleCollider2D Collider;
-    private float m_fCooldown = 2.0f;
+    public float m_fCooldown = 2f;
     private SpriteRenderer m_Sprite;
     [SerializeField]
     private GameObject m_Particle;
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 
     void Awake ()
 	{
-        
+        m_fCooldown = 0;
         m_Sprite = this.GetComponent<SpriteRenderer>();
         m_Rigidbody = this.GetComponent<Rigidbody2D>();
         Collider.enabled = false;
@@ -163,13 +163,8 @@ public class PlayerController : MonoBehaviour {
     }
 
 	public void MoveToSpawn() {
-        if (m_iPlayerId < 2)
-            SetPosition(new Vector2(1 + m_iPlayerId, 2 + m_iPlayerId));
-        if (m_iPlayerId == 2)
-            SetPosition(new Vector2(m_iPlayerId, m_iPlayerId));
-        if (m_iPlayerId == 3)
-            SetPosition(new Vector2(1, m_iPlayerId));
-    }
+		// where?
+	}
 
     public void Reset()
     {
@@ -208,10 +203,5 @@ public class PlayerController : MonoBehaviour {
     public void SetPosition(Vector2 Pos)
     {
         transform.position = Pos;
-    }
-
-    public void SetSprite(Sprite _sprite)
-    {
-        m_Sprite.sprite = _sprite;
     }
 }
