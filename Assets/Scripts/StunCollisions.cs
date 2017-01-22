@@ -79,6 +79,11 @@ public class StunCollisions : MonoBehaviour {
             ParticleCollision.StunWaveDelay = int.MaxValue;
             CastRing = false;
         }
+        if (station.Level == 4)
+        {
+            ParticleCollision.StunWaveDelay = 2f;
+        }
+
            
     
 
