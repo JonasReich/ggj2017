@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 
     public float MovementSpeedFaktor = 4f;
 
+    public int Points;
 
     public float knockBackTime = 2f;
 
@@ -213,5 +214,13 @@ public class PlayerController : MonoBehaviour {
     public void SetSprite(Sprite _sprite)
     {
         m_Sprite.sprite = _sprite;
+    }
+
+
+    public int GetPoints()
+    {
+
+
+        return Points;
     }
 }

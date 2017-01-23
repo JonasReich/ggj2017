@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 	public GUIStyle style, winlabelstyle, winbuttonstyle;
 
     [SerializeField]
-    private PlayerController[] PlayerArray;
+    public PlayerController[] PlayerArray;
     [SerializeField]
     private PlayerController PlayerPrefab;
 
@@ -122,28 +122,28 @@ public class GameManager : MonoBehaviour {
 		}
         if(CharSelection)
         {
-            float offset = 300;
-            for(int i = 0; i < NumPlayers; i++)
-            {
-                string PlayerChoose = "Player " + i + ":\nChoose your\nCharakter";
-                GUI.Label(new Rect(Screen.width - offset, Screen.height / 2 - 75, 250, 150),
-                        PlayerChoose, winlabelstyle);
+            //float offset = 300;
+            //for(int i = 0; i < NumPlayers; i++)
+            //{
+            //    string PlayerChoose = "Player " + i + ":\nChoose your\nCharakter";
+            //    GUI.Label(new Rect(Screen.width - offset, Screen.height / 2 - 75, 250, 150),
+            //            PlayerChoose, winlabelstyle);
 
-                if (GUI.Button(new Rect(Screen.width - offset, Screen.height / 2 + 100, 275, 100), "Propaganda Panda", winbuttonstyle))
-                {
-                    PlayerArray[i].SetSprite(Panda);
-                    CharSelection = false;
-                    break;
-                }
-                if (GUI.Button(new Rect(Screen.width - offset, Screen.height / 2 + 200, 275, 100), "Mouse sullini", winbuttonstyle))
-                {
-                    PlayerArray[i].SetSprite(Mouse);
-                    CharSelection = false;
-                    break;
-                }
-                offset += 300;
+            //    if (GUI.Button(new Rect(Screen.width - offset, Screen.height / 2 + 100, 275, 100), "Propaganda Panda", winbuttonstyle))
+            //    {
+            //        PlayerArray[i].SetSprite(Panda);
+            //        CharSelection = false;
+            //        break;
+            //    }
+            //    if (GUI.Button(new Rect(Screen.width - offset, Screen.height / 2 + 200, 275, 100), "Mouse sullini", winbuttonstyle))
+            //    {
+            //        PlayerArray[i].SetSprite(Mouse);
+            //        CharSelection = false;
+            //        break;
+            //    }
+            //    offset += 300;
 
-            }
+            //}
             if (GUI.Button(new Rect(Screen.width /2 - 125, Screen.height / 2 - 250, 250, 100), "ready", winbuttonstyle))
             {
                 countDown -= 0.5f;
