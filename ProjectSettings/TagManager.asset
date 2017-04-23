@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Players
+  - Towers
+  - Houses&Players
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: aboveGround
+    uniqueID: 1134899523
+    locked: 0
+  - name: Background
+    uniqueID: 2926924945
     locked: 0
